@@ -46,4 +46,3 @@
 .\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\SAMD09_DFP\1.0.1\Device\SAMD09\Include\instance/wdt.h
 .\objects\main.o: C:\Keil_v5\ARM\PACK\Keil\SAMD09_DFP\1.0.1\Device\SAMD09\Include\pio/samd09c13a.h
 .\objects\main.o: xmastree.h
-.\objects\main.o: timer.h
