@@ -12,7 +12,7 @@ typedef struct {
 } state_t;
 
 // Define array of state_t to hold patterns
-constexpr uint8_t NUM_PATTERNS = 2u;
+constexpr uint8_t NUM_PATTERNS = 6u;
 constexpr uint8_t NUM_STATES = 6u;
 
 const state_t PATTERNS[NUM_PATTERNS][NUM_STATES] = 
@@ -34,6 +34,42 @@ const state_t PATTERNS[NUM_PATTERNS][NUM_STATES] =
         {0u, 250u},
         {MASK_YEL1_SET | MASK_YEL2_SET, 100u},
         {0u, 250u}
+    },
+    // Pattern 3 - double flash
+    {
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 20u},
+        {0u, 20u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 20u},
+        {0u, 200u},
+        {0u, 0u},
+        {0u, 0u}
+    },
+    // Pattern 4 - ultimate rave
+    {
+        {MASK_YEL2_SET, 10u},
+        {MASK_RED1_SET, 10u},
+        {MASK_GRN2_SET, 10u},
+        {MASK_YEL1_SET, 10u},
+        {MASK_RED2_SET, 10u},
+        {MASK_GRN1_SET, 10u}
+    },
+    // Pattern 5 - all on
+    {
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u},
+        {MASK_GRN1_SET | MASK_GRN2_SET | MASK_RED1_SET | MASK_RED2_SET | MASK_YEL1_SET | MASK_YEL2_SET, 10u}
+    },
+    // OFF
+    {
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0},
+        {0,0}
     }
 };
 
@@ -52,11 +88,6 @@ int main()
     
     // Enable pin2 input
     PORT->Group[0u].PINCFG[2u].bit.INEN = 1;
-    
-    // Setup pin2 as external interrupt
-    //EIC->EVCTRL.bit.EXTINTEO2 = 1;
-    EIC->WAKEUP.bit.WAKEUPEN2 = 1;
-    EIC->CTRL.bit.ENABLE = 1;
 
     // Led state counter
     uint32_t led_wait = 0u;
@@ -132,13 +163,7 @@ void SetGPIOS(uint32_t GPIOS)
 void NextPattern()
 {
     if (++CUR_PATTERN >= NUM_PATTERNS)
-    {
-        // Go to sleep
-        SetGPIOS(0u);
-        PM->SLEEP.bit.IDLE = 2; // stop CPU, AHB, APB clocks
-        __WFI();
-        
-        // For safety
+    {        
         CUR_PATTERN = 0u;
     }
 }

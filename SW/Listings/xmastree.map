@@ -4,15 +4,14 @@ Component: ARM Compiler 5.06 update 6 (build 750) Tool: armlink [4d35ed]
 
 Section Cross References
 
-    main.o(i._Z11NextPatternv) refers to main.o(i._Z8SetGPIOSj) for SetGPIOS(unsigned)
     main.o(i._Z11NextPatternv) refers to main.o(.data) for CUR_PATTERN
     main.o(i._Z9NextStatev) refers to main.o(i._Z8SetGPIOSj) for SetGPIOS(unsigned)
     main.o(i._Z9NextStatev) refers to main.o(.data) for NextState()::state
     main.o(i._Z9NextStatev) refers to main.o(.constdata) for PATTERNS
     main.o(i.main) refers to main.o(i._Z9NextStatev) for NextState()
     main.o(i.main) refers to main.o(i._Z11NextPatternv) for NextPattern()
-    main.o(.ARM.exidx) refers to main.o(i._Z8SetGPIOSj) for i._Z8SetGPIOSj
     main.o(.ARM.exidx) refers to main.o(i._Z11NextPatternv) for i._Z11NextPatternv
+    main.o(.ARM.exidx) refers to main.o(i._Z8SetGPIOSj) for i._Z8SetGPIOSj
     main.o(.ARM.exidx) refers to main.o(i._Z9NextStatev) for i._Z9NextStatev
     main.o(.ARM.exidx) refers to main.o(i.main) for i.main
     startup_samd09.o(STACK) refers (Special) to heapauxi.o(.text) for __use_two_region_memory
@@ -266,11 +265,11 @@ Image Symbol Table
     .text                                    0x000001ce   Section        0  indicate_semi.o(.text)
     i.SystemInit                             0x000001d0   Section        0  system_samd09.o(i.SystemInit)
     i._Z11NextPatternv                       0x000001e0   Section        0  main.o(i._Z11NextPatternv)
-    i._Z8SetGPIOSj                           0x00000218   Section        0  main.o(i._Z8SetGPIOSj)
-    i._Z9NextStatev                          0x00000224   Section        0  main.o(i._Z9NextStatev)
-    i.main                                   0x00000278   Section        0  main.o(i.main)
-    .constdata                               0x00000314   Section       96  main.o(.constdata)
-    PATTERNS                                 0x00000314   Data          96  main.o(.constdata)
+    i._Z8SetGPIOSj                           0x000001fc   Section        0  main.o(i._Z8SetGPIOSj)
+    i._Z9NextStatev                          0x00000208   Section        0  main.o(i._Z9NextStatev)
+    i.main                                   0x0000025c   Section        0  main.o(i.main)
+    .constdata                               0x000002d8   Section      288  main.o(.constdata)
+    PATTERNS                                 0x000002d8   Data         288  main.o(.constdata)
     .data                                    0x20000000   Section        2  main.o(.data)
     NextState()::state                       0x20000001   Data           1  main.o(.data)
     .data                                    0x20000004   Section        4  system_samd09.o(.data)
@@ -403,12 +402,12 @@ Image Symbol Table
     __use_no_semihosting_swi                 0x000001cd   Thumb Code     2  use_no_semi.o(.text)
     __semihosting_library_function           0x000001cf   Thumb Code     0  indicate_semi.o(.text)
     SystemInit                               0x000001d1   Thumb Code     8  system_samd09.o(i.SystemInit)
-    NextPattern()                            0x000001e1   Thumb Code    48  main.o(i._Z11NextPatternv)
-    SetGPIOS(unsigned)                       0x00000219   Thumb Code     6  main.o(i._Z8SetGPIOSj)
-    NextState()                              0x00000225   Thumb Code    70  main.o(i._Z9NextStatev)
-    main                                     0x00000279   Thumb Code   142  main.o(i.main)
-    Region$$Table$$Base                      0x00000374   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x00000394   Number         0  anon$$obj.o(Region$$Table)
+    NextPattern()                            0x000001e1   Thumb Code    22  main.o(i._Z11NextPatternv)
+    SetGPIOS(unsigned)                       0x000001fd   Thumb Code     6  main.o(i._Z8SetGPIOSj)
+    NextState()                              0x00000209   Thumb Code    70  main.o(i._Z9NextStatev)
+    main                                     0x0000025d   Thumb Code   114  main.o(i.main)
+    Region$$Table$$Base                      0x000003f8   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x00000418   Number         0  anon$$obj.o(Region$$Table)
     CUR_PATTERN                              0x20000000   Data           1  main.o(.data)
     SystemCoreClock                          0x20000004   Data           4  system_samd09.o(.data)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
@@ -422,9 +421,9 @@ Memory Map of the image
 
   Image Entry point : 0x00000131
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x0000039c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00000420, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000394, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x00000000, Load base: 0x00000000, Size: 0x00000418, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -486,24 +485,24 @@ Memory Map of the image
     0x000001ce   0x000001ce   0x00000000   Code   RO          344    .text               c_p.l(indicate_semi.o)
     0x000001ce   0x000001ce   0x00000002   PAD
     0x000001d0   0x000001d0   0x00000010   Code   RO          202    i.SystemInit        system_samd09.o
-    0x000001e0   0x000001e0   0x00000038   Code   RO            3    i._Z11NextPatternv  main.o
-    0x00000218   0x00000218   0x0000000c   Code   RO            4    i._Z8SetGPIOSj      main.o
-    0x00000224   0x00000224   0x00000054   Code   RO            5    i._Z9NextStatev     main.o
-    0x00000278   0x00000278   0x0000009c   Code   RO            6    i.main              main.o
-    0x00000314   0x00000314   0x00000060   Data   RO           11    .constdata          main.o
-    0x00000374   0x00000374   0x00000020   Data   RO          397    Region$$Table       anon$$obj.o
+    0x000001e0   0x000001e0   0x0000001c   Code   RO            3    i._Z11NextPatternv  main.o
+    0x000001fc   0x000001fc   0x0000000c   Code   RO            4    i._Z8SetGPIOSj      main.o
+    0x00000208   0x00000208   0x00000054   Code   RO            5    i._Z9NextStatev     main.o
+    0x0000025c   0x0000025c   0x0000007c   Code   RO            6    i.main              main.o
+    0x000002d8   0x000002d8   0x00000120   Data   RO           11    .constdata          main.o
+    0x000003f8   0x000003f8   0x00000020   Data   RO          397    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000394, Size: 0x00000008, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x00000418, Size: 0x00000008, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x00000394   0x00000002   Data   RW           12    .data               main.o
-    0x20000002   0x00000396   0x00000002   PAD
-    0x20000004   0x00000398   0x00000004   Data   RW          205    .data               system_samd09.o
+    0x20000000   0x00000418   0x00000002   Data   RW           12    .data               main.o
+    0x20000002   0x0000041a   0x00000002   PAD
+    0x20000004   0x0000041c   0x00000004   Data   RW          205    .data               system_samd09.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x0000039c, Size: 0x00000260, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x00000420, Size: 0x00000260, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -519,12 +518,12 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       308         42         96          2          0       7014   main.o
+       248         36        288          2          0       6978   main.o
         52         22        140          0        512        624   startup_samd09.o
         16          8          0          4          0        659   system_samd09.o
 
     ----------------------------------------------------------------------
-       376         72        268          8        512       8297   Object Totals
+       316         66        460          8        512       8261   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          0          0          0          2          0          0   (incl. Padding)
 
@@ -573,15 +572,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-       648         88        268          8        608       8621   Grand Totals
-       648         88        268          8        608       8621   ELF Image Totals
-       648         88        268          8          0          0   ROM Totals
+       588         82        460          8        608       8585   Grand Totals
+       588         82        460          8        608       8585   ELF Image Totals
+       588         82        460          8          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                  916 (   0.89kB)
+    Total RO  Size (Code + RO Data)                 1048 (   1.02kB)
     Total RW  Size (RW Data + ZI Data)               616 (   0.60kB)
-    Total ROM Size (Code + RO Data + RW Data)        924 (   0.90kB)
+    Total ROM Size (Code + RO Data + RW Data)       1056 (   1.03kB)
 
 ==============================================================================
 
